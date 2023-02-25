@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+
 function CreateArea(props) {
   const [inputText, setInputText] = useState({
     title: "",
@@ -16,7 +17,7 @@ function CreateArea(props) {
   }
   return (
     <div>
-      <form>
+      <form className="create-form">
         <input
           onChange={handleChange}
           name="title"
@@ -31,8 +32,9 @@ function CreateArea(props) {
           value={inputText.content}
         />
         <button
+          className="create-form-button"
           onClick={(e) => {
-            props.onAdd(inputText);
+            props.onAdd(inputText,e);
             setInputText({
               title: "",
               content: ""
@@ -40,7 +42,7 @@ function CreateArea(props) {
             e.preventDefault();
           }}
         >
-          <i class="fa-solid fa-plus"></i>
+          <i className="fa-solid fa-plus"></i>
         </button>
       </form>
     </div>

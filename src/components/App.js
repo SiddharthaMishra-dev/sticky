@@ -3,39 +3,23 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Note from "./Note";
 import CreateArea from "./CreateArea";
+import SignUp from "./SignUp";
+import Notes from "./Notes";
+import Login from "./Login";
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
-  const [note, setNote] = useState([]);
-  function addNote(newNote) {
-    setNote((prevValue) => {
-      return [...prevValue, newNote];
-    });
-  }
-  function deleteNote(id) {
-    setNote((prevNote) => {
-      return prevNote.filter((singleNote, index) => {
-        return index !== id;
-      });
-    });
-  }
+  
   return (
-    <div>
-      <Header />
-      <CreateArea onAdd={addNote} />
-      {note.map((singleNote, index) => {
-        return (
-          <Note
-            key={index}
-            id={index}
-            title={singleNote.title}
-            content={singleNote.content}
-            onDelete={deleteNote}
-          />
-        );
-      })}
-      <Footer />
-    </div>
-  );
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<SignUp/>}/>
+        <Route path="/login" element={<Login/>}/>
+        <Route path="/notes" element={<Notes/>}/>
+      </Routes>
+    </BrowserRouter>
+  )
+
 }
 
 export default App;
